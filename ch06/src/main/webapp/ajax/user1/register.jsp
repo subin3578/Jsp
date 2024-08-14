@@ -14,8 +14,7 @@
 			
 			
 			btnSubmit.onclick = (e) => {
-				e.preventDefault();
-				
+				e.preventDefault();				
 				
 				const uid = formUser.uid.value;
 				const name = formUser.name.value;
@@ -35,32 +34,36 @@
 				console.log(jsonData);
 				
 				// 서버 전송
-				fetch('./registerProc.jsp', {
-					method: 'POST',
-					header: {'Content-Type':'application/json'},
-					body : JSON.stringify(jsonData)
-				})
+				fetch('./proc/registerProc.jsp', {
+						method: 'POST',
+						headers: {'Content-Type': 'application/json'},
+						body: JSON.stringify(jsonData) // <-- 반드시 JSON객체를 문자열로 변환
+					})
 					.then(response => response.json())
 					.then(data => {
 						console.log(data);
-		
-					if(data.result > 0){
-						alert('등록 선공');
-					}else {
-						alert('등록 실패!');
-					}
+						
+						// 서버에서 결과 데이터 수신
+						if(data.result > 0){
+							alert('등록 성공!');
+							
+							// 목록 이동
+							location.href = './list.jsp';
+							
+						}else{
+							alert('등록 실패!');
+						}						
+						
 					})
 					.catch(err => {
 						console.log(err);
 					});
 			}
-
 		}
-	
 	</script>
 </head>
 <body>
-	<h3>AJAX User1 등록</h3>
+	<h3>user1 등록</h3>
 	
 	<a href="./list.jsp">목록이동</a>
 	<form action="#" method="post">
