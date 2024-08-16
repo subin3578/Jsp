@@ -5,6 +5,37 @@
 <head>
 <meta charset="UTF-8">
 <title>User2 register</title>
+
+<script>
+
+	window.onload = function() {
+		
+		const btnSumit = document.getElementsByName)('submit')[0];
+		const formUser = document.getElementsByTagName('form')[0];
+		
+		btnSubmit.onclick = (e) => {
+			e.preventDefualt();
+			
+			const uid = formUser.uid.value;
+			const name = formUser.name.value;
+			const birth = formUser.birth.value;
+			const hp = formUser.hp.value;
+			const age = formUser.age.value;
+			
+			// Json 생성
+			const jsonData = {
+					"uid":uid,
+					"name":name,
+					"birth":birth,
+					"hp":hp,
+					"age":age
+			};
+			
+			console.log(jsonData);
+		}
+		
+	}
+</script>
 </head>
 <body>
 	<h3>User2 등록</h3>
